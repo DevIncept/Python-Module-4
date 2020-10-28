@@ -12,4 +12,4 @@
 10. [Part5: Types of Plots 2 Notebook](Part5-Types-of-Plots-2.ipynb)
 11. [Part6: Types of Plots 3](Part6-Types-of-Plots-3.md)
 12. [Part6: Types of Plots 3 Notebook](Part6-Types-of-Plots-3.ipynb)
-[Assignment- Matplotlib](Assignment-Matplotlib.md)
+13. [Assignment- Matplotlib](Assignment-Matplotlib.md)

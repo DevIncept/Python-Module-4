@@ -12,4 +12,10 @@
 10. [Part5: Types of Plots 2 Notebook](Part5-Types-of-Plots-2.ipynb)
 11. [Part6: Types of Plots 3](Part6-Types-of-Plots-3.md)
 12. [Part6: Types of Plots 3 Notebook](Part6-Types-of-Plots-3.ipynb)
-13. [Assignment- Matplotlib](Assignment-Matplotlib.md)
+
+
+13. **[Group Project](gp.md)** *Optional*
+
+14. **[Make your Portfolio](https://github.com/DevIncept/Portfolio)** *Optional*
+
+15. **Quiz** Link will be shared    *(Mandatory)*

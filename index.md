@@ -14,7 +14,8 @@
 12. [Part6: Types of Plots 3 Notebook](Part6-Types-of-Plots-3.ipynb)
 
 
-13. **[Group Project](gp.md)** *Optional*
+13. **Group Project :** As directed on slack *(Optional)*
+
 
 14. **[Make your Portfolio](https://github.com/DevIncept/Portfolio)** *Optional*
 

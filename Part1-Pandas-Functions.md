@@ -1,252 +1,592 @@
-# Functions & Methods
-The important Functions & Methods used in Pandas are:
-* head()
-* describe()
-* loc[]
-* iloc[]
-* read_csv()
+# Pandas Function
 
-### Dataframe/Series.head() method
-Pandas head() method is used to return top n (5 by default) rows of a data frame or series.<br>
-**Syntax:** Dataframe.head(n=5)<br>
-**Parameters:** n: integer value, number of rows to be returned<br>
-**Return type:** Dataframe with top n rows<br>
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-1.png)
 
-In the following examples, the data frame used contains data of some NBA players. The image of data frame before any operations is attached below.
+Python is a great language for doing data analysis, primarily because of the fantastic ecosystem of data-centric python packages. Pandas is one of those packages and makes importing and analyzing data much easier.
 
-![shortcut](extras/Data_logo.jpg)
+## _PreRequisites_ 
 
-**Example #1:** In this example, top 5 rows of data frame are returned and stored in a new variable. No parameter is passed to .head() method since by default it is 5.
-```python
-# importing pandas module 
+Importing the Pandas Module
+
+``` python
 import pandas as pd 
-  
-# making data frame 
-data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv") 
-  
-# calling head() method  
-# storing in new variable 
-data_top = data.head() 
-  
-# display 
-data_top 
 ```
 
-**Output**
+**DataFrame** 
 
-![shortcut](extras/Head1_output.jpg)
+Dataframe is a two-dimensional size-mutable, potentially heterogeneous tabular data structure with labeled axes (rows and columns). Arithmetic operations align on both row and column labels. It can be thought of as a dict-like container for Series objects. This is the primary data structure of the Pandas.
 
-**Example #2:** In this example, the .head() method is called on series with custom input of n parameter to return top 9 rows of the series.
+
+## 1. Read_csv
+
+
+
+**read_csv** is an important pandas function to read csv files and do operations on it.
+
+
+
+| **Parameter**	|	**Use**| 
+|----|---|
+|filepath_or_buffer |	URL or Dir location of file|
+| sep		|	Stands for separator, default is ‘, ‘ as in csv|
+|index_col	|	Makes passed column as index instead |
+|header	 |       	Makes passed row/s[int/int list] as header|
+|use_cols|Only uses the passed col[string list] to make data frame|
+|squeeze	|	If true and only one column is passed, returns pandas series|
+skiprows|	Skips passed rows in new data frame|
+
 ```python
-# importing pandas module 
-import pandas as pd 
-  
-# making data frame 
-data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv") 
-  
-# number of rows to return 
-n = 9
-  
-# creating series 
-series = data["Name"] 
-  
-# returning top n rows 
-top = series.head(n = n) 
-  
-# display 
-top 
+data = pd.read_csv("filename.csv")
 ```
 
-**Output**
+---
 
-![shortcut](extras/Head2_output.jpg)
+## 2. Head and Tail
 
-### Dataframe/Series.describe() method
-Pandas describe() is used to view some basic statistical details like percentile, mean, std etc. of a data frame or a series of numeric values. When this method is applied to a series of string, it returns a different output which is shown in the examples below.<br>
-**Syntax:** DataFrame.describe(percentiles=None, include=None, exclude=None)<br>
-**Parameters:** <br>
-percentile: list like data type of numbers between 0-1 to return the respective percentile<br>
-include: List of data types to be included while describing dataframe. Default is None<br>
-exclude: List of data types to be Excluded while describing dataframe. Default is None<br>
-**Return type:** Statistical summary of data frame.<br>
 
-**Example #1:** In this example, the data frame is described and [‘object’] is passed to include parameter to see description of object series. [.20, .40, .60, .80] is passed to percentile parameter to view the respective percentile of Numeric series.
+
+_head()_ method is used to return top n (5 by default) rows of a data frame or series
+
+> Syntax : Dataframe.head(n).
+
+Parameters: (optional) n is integer value, number of rows to be returned.
+
+Return: Dataframe with top n rows .
 ```python
-# importing pandas module  
-import pandas as pd  
-  
-# importing regex module 
-import re 
-    
-# making data frame  
-data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
-    
-# removing null values to avoid errors  
-data.dropna(inplace = True)  
-  
-# percentile list 
-perc =[.20, .40, .60, .80] 
-  
-# list of dtypes to include 
-include =['object', 'float', 'int'] 
-  
-# calling describe method 
-desc = data.describe(percentiles = perc, include = include) 
-  
-# display 
-desc 
+data.head()
 ```
 
-**Output**
+Output :
 
-![shortcut](extras/Describe1_output.jpg)
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-33.png)
 
-**Example #2:** In this example, the describe method is used on Series of strings called by the Name column to see the behaviour with object data type.
+**TAIL**
+
+
+
+
+_tail()_ method is used to return bottom n (5 by default) rows of a data frame or series.
+
+> Syntax : Dataframe.tail(n)
+
+Parameters: (optional) n is integer value, number of rows to be returned.
+
+Return: Dataframe with bottom n rows .
+
 ```python
-# importing pandas module  
-import pandas as pd  
-  
-# importing regex module 
-import re 
-    
-# making data frame  
-data = pd.read_csv("https://media.geeksforgeeks.org/wp-content/uploads/nba.csv")  
-    
-# removing null values to avoid errors  
-data.dropna(inplace = True)  
-  
-# calling describe method 
-desc = data["Name"].describe() 
-  
-# display 
-desc 
+data.tail()
+```
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-34.png)
+
+---
+
+## 3. Info()
+
+
+
+_dataframe.info()_ function is used to get a concise summary of the dataframe. It comes really handy when doing exploratory analysis of the data. To get a quick overview of the dataset we use the dataframe.info() function.
+
+> Syntax : DataFrame.info(verbose=None, buf=None, max_cols=None, memory_usage=None, null_counts=None)
+
+```python
+data.info()
 ```
 
-**Output**
+Output :
 
-![shortcut](extras/Describe2_output.jpg)
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-35.png)
 
-### Dataframe/Series.loc[] method
-Pandas provide a unique method to retrieve rows from a Data frame. DataFrame.loc[] method is a method that takes only index labels and returns row or dataframe if the index label exists in the caller data frame.<br>
-**Syntax:** pandas.DataFrame.loc[]<br>
-**Parameters:** <br>
-Index label: String or list of string of index label of rows<br>
-**Return type:** Data frame or Series depending on parameters<br>
+---
 
-**Example #1:** In this example, Name column is made as the index column and then two single rows are extracted one by one in the form of series using index label of rows.
+## 4. Dtypes
+
+
+
+DataFrame.types attribute returns the dtypes in the DataFrame. It returns a Series with the data type of each column.
+
+> Syntax : DataFrame.dtypes
+
+Parameter : None
+
+Returns : dtype of each column
+
 ```python
-# importing pandas package 
-import pandas as pd 
-  
-# making data frame from csv file 
-data = pd.read_csv("nba.csv", index_col ="Name") 
-  
-# retrieving row by loc method 
-first = data.loc["Avery Bradley"] 
-second = data.loc["R.J. Hunter"] 
-  
-print(first, "\n\n\n", second) 
-``` 
-
-**Output**
-
-![shortcut](extras/Loc1_output.jpg)
-
-**Example #2:** In this example, Name column is made as the index column and then two single rows are extracted at the same time by passing a list as parameter.
-```python
-# importing pandas package 
-import pandas as pd 
-  
-# making data frame from csv file 
-data = pd.read_csv("nba.csv", index_col ="Name") 
-  
-# retrieving rows by loc method 
-rows = data.loc[["Avery Bradley", "R.J. Hunter"]] 
-  
-# checking data type of rows 
-print(type(rows)) 
-  
-# display 
-rows 
+data.dtypes
+data
 ```
 
-**Output**
+Output :
 
-![shortcut](extras/Loc2_output.jpg)
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-44.png)
 
-### Dataframe/Series.iloc[] method
-Pandas provide a unique method to retrieve rows from a Data frame. Dataframe.iloc[] method is used when the index label of a data frame is something other than numeric series of 0, 1, 2, 3….n or in case the user doesn’t know the index label. Rows can be extracted using an imaginary index position which isn’t visible in the data frame.<br>
-**Syntax:** pandas.DataFrame.iloc[]<br>
-**Parameters:** <br>
-Index Position: Index position of rows in integer or list of integer.<br>
-**Return type:** Data frame or Series depending on parameters<br>
+---
 
-**Example #1:** In this example, same index number row is extracted by both .iloc[] and.loc[] method and compared. Since the index column by default is numeric, hence the index label will also be integers.
+## 5. Describe
+
+
+
+_describe()_ is used to view some basic statistical details like percentile, mean, std etc. of a data frame or a series of numeric values. When this method is applied to a series of strings, it returns a different output which is shown in the examples below.
+
+> Syntax : DataFrame.describe(percentiles=None, include=None, exclude=None)
+
+Return type : Statistical summary of data frame.
+
 ```python
-# importing pandas package 
-import pandas as pd 
-  
-# making data frame from csv file  
-data = pd.read_csv("nba.csv") 
-  
-# retrieving rows by loc method  
-row1 = data.loc[3] 
-  
-# retrieving rows by iloc method 
-row2 = data.iloc[3] 
-  
-# checking if values are equal 
-row1 == row2 
+data.describe()
 ```
 
-**Output**
+Output :
+ 
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-45.png)
 
-![shortcut](extras/Iloc1_output.jpg)
+---
 
-**Example #2:** In this example, multiple rows are extracted first by passing a list and then by passing integers to extract rows between that range. After that, both the values are compared.
+## 6. Size and Shapes
+
+
+
+Pandas .size and .shape are used to return size and shape of data frames and series.
+
+> Syntax : dataframe.size
+
+Return : Returns size of dataframe/series which is equivalent to total number of elements.   
+
 ```python
-# importing pandas package 
-import pandas as pd 
-  
-# making data frame from csv file  
-data = pd.read_csv("nba.csv") 
-  
-# retrieving rows by loc method  
-row1 = data.iloc[[4, 5, 6, 7]] 
-  
-# retrieving rows by loc method  
-row2 = data.iloc[4:8] 
-  
-# comparing values 
-row1 == row2 
+data.size
 ```
 
-**Output**
+Output :
 
-![shortcut](extras/Iloc2_output.jpg)
+`10692`
 
-### Pandas.read_csv() method
-**read_csv** is an important pandas function to read csv files and do operations on it.<br>
 
-**Example #1:** In this example, we're using pandas to read csv files.
+
+> Syntax : dataframe.shape
+
+Return : Returns tuple of shape (Rows, columns) of dataframe/series
+
 ```python
-# Import pandas 
-import pandas as pd 
-  
-# reading csv file  
-pd.read_csv("filename.csv") 
+data.shape
+```
+Output :
+
+`(891,12)`
+
+---
+
+## 7. Sample
+
+
+
+_sample()_ is used to generate a sample random row or column from the function caller data frame.
+
+> Syntax : DataFrame.sample(n=None, frac=None, replace=False, weights=None, random_state=None, axis=None)
+
+Return type : New object of same type as caller
+
+```python
+data.sample(n=1)
 ```
 
-Opening a CSV file through this is easy. But there are many others thing one can do through this function only to change the returned object completely. For instance, one can read a csv file not only locally, but from a URL through read_csv or one can choose what columns needed to export so that we don’t have to edit the array later.<br>
-Here is the list of parameters it takes with their **Default values**.
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-42.png)
 
-|   **Parameter**    |                            **Use**                                      |
-|--------------------|-------------------------------------------------------------------------|
-| filepath_or_buffer | URL or Dir location of file                                             |
-| sep                | Stands for seperator, default is ‘, ‘ as in csv(comma seperated values) |
-| index_col          | Makes passed column as index instead of 0, 1, 2, 3…r                    |
-| header             | Makes passed row/s[int/int list] as header                              |
-| use_cols           | Only uses the passed col[string list] to make data frame                |
-| squeeze            | If true and only one column is passed, returns pandas series            |
-| skiprows           | Skips passed rows in new data frame                                     |
+---
 
+## 8. Isnull()
+
+
+
+column is checked for NULL values and a boolean series is returned by the isnull() method which stores True for ever NaN value and False for a Not null value.
+
+>Syntax: Pandas.isnull(“DataFrameName”) or DataFrame.isnull()
+
+Parameters: Object to check null values 
+
+Return Type: Dataframe of Boolean values which are True for NaN values 
+
+```python
+data.isnull()
+```
+Output : 
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-46.png)
+---
+
+## 9. Isna()
+
+
+
+Pandas dataframe.isna() function is used to detect missing values. It return a boolean same-sized object indicating if the values are NA. NA values(None or numpy.NaN) gets mapped to True values.
+
+>Syntax: DataFrame.isna()
+
+Returns: Mask of bool values for each element in DataFrame that indicates whether an element is an NA value or not.
+
+```python
+data.isna()
+```
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-47.png)
+
+---
+
+## 10. Isnull().sum()
+
+
+
+
+isnull().sum()- Returns the number of missing values in the data set.
+
+example:
+>Syntax  .isna().sum()   # or s.isnull().sum() for older pandas versions 
+
+```python
+data.isnull().sum()
+```
+
+Output : 
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-48.png)
+
+---
+
+## 11. nunique()
+
+
+
+
+The function return number of unique elements in the object. It returns a value which is the count of all the unique values in the Index. By default the NaN values are not included in the count. If dropna parameter is set to be False then it includes NaN value in the count.
+
+>Syntax: Index.nunique(dropna=True)
+
+Parameters :
+dropna : Don’t include NaN in the count.
+
+Returns :int
+
+```python
+data.nunique
+```
+
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-50.png)
+
+
+---
+
+## 12. Index and Column
+
+
+
+
+Immutable sequence used for indexing and alignment. The basic object storing axis labels for all pandas objects.
+
+> Syntax:  pandas.Index(data=None, dtype=None, copy=False, name=None, tupleize_cols=True, **kwargs)
+
+An Index instance can only contain hashable objects
+
+```python
+data.index 
+```
+
+Output :
+
+`RangeIndex(start=0, stop=891, step=1)`
+
+
+
+
+Pandas DataFrame.columns attribute return the column labels of the given Dataframe.
+
+> Syntax: DataFrame.columns
+
+Parameter : None
+
+Returns : column names 
+
+```python
+data.columns
+```
+
+Output :
+
+`Index(['PassengerId', 'Survived', 'Pclass', 'Name', 'Sex', 'Age',SibSp',
+       'Parch', 'Ticket', 'Fare', 'Cabin', 'Embarked'],
+      dtype='object')`
+
+---
+
+## 13. Memory Usage
+
+Pandas dataframe.memory_usage() function return the memory usage of each column in bytes. The memory usage can optionally include the contribution of the index and elements of object dtype. This value is displayed in DataFrame.info by default.
+
+>Syntax: DataFrame.memory_usage(index=True, deep=False)
+
+Parameters : 
+index : Specifies whether to include the memory usage of the DataFrame’s index in returned Series. If index=True the memory usage of the index the first item in the output. 
+deep : If True, introspect the data deeply by interrogating object dtypes for system-level memory consumption, and include it in the returned values.
+
+Returns : A Series whose index is the original column names and whose values is the memory usage of each column in bytes 
+
+```python
+data.memory_usage()
+```
+
+Output : 
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-51.png)
+---
+
+## 14. nlargest and nsmallest
+
+
+
+nsmallest() method is used to get n least values from a data frame or a series.
+
+>Syntax : DataFrame.nsmallest(n, columns, keep=’first’)
+
+```python
+df = data.nsmallest(5,'Fare')
+df
+```
+
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-22.png)
+
+**nlargest()**
+
+
+
+nlargest() method is used to get n highest values from a data frame or a series.
+
+> Syntax : DataFrame.nlargest(n, columns, keep=’first’)
+
+Output : 
+
+```python
+df = data.nlargest(5,'Fare')
+df
+```
+Output : 
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-24.png)
+
+---
+
+## 15. Loc and iloc
+
+
+
+loc() and iloc() are used in slicing of data from the Pandas DataFrame. They help in the convenient selection of data from the DataFrame. They are used in filtering the data according to some conditions.
+
+
+| loc |  iloc  |
+|---|--|
+|Access a group of rows and columns by label(s) or a boolean array. | Purely integer-location based indexing for selection by position.|
+
+> Syntax : df.loc[row_indexer,column_indexer] 
+
+```python
+df = data.loc[10:15,['Fare']]
+df
+```
+
+Output :
+
+
+
+**iloc**
+
+
+```python
+df = data.iloc[3:7,:5]
+df
+```
+
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-26.png)
+
+---
+
+## 16. Slicing
+
+
+
+Slicing using the [] operator selects a set of rows and/or columns from a DataFrame. To slice out a set of rows, you use the following.
+
+> syntax: data[start:stop]
+
+```python
+df = data[1:6]
+df
+```
+Output : 
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-27.png)
+
+---
+
+## 17. Groupby
+
+
+
+_groupby()_ function is used to split the data into groups based on some criteria.
+
+> Syntax : DataFrame.groupby(by=None, axis=0, level=None, as_index=True, sort=True, group_keys=True, squeeze=False, **kwargs)
+
+Returns : DataFrameGroupBy
+
+```python
+df = data[['Fare','Age','Survived']].groupby(['Fare']).mean()
+df
+```
+Output : 
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-28.png)
+
+---
+
+## 18. Sorting
+
+
+
+_sort_values()_ function sorts a data frame in Ascending or Descending order of passed Column. It's different than the sorted Python function since it cannot sort a data frame and particular column cannot be selected.
+
+> Syntax : DataFrame.sort_values(by, axis=0, ascending=True, inplace=False, kind='quicksort', na_position='last', ignore_index=False, key=None)
+
+Returns : DataFrame or None
+
+```python
+df = data.sort_index(axis = 1, ascending = True)
+df
+```
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-29.png)
+
+```python
+data.sort_index(axis = 1, ascending = False)
+```
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-30.png)
+
+```python
+df = data.sort_values(by='Fare')
+df
+```
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-31.png)
+
+---
+
+## 19. Dropna
+
+The dropna() function is used to remove missing values. Determine if rows or columns which contain missing values are removed
+
+
+
+> Syntax : DataFrame.dropna(axis=0, how='any', thresh=None, subset=None, inplace=False)
+
+Returns : DataFrame or None
+
+```python
+df = ['Fare'] 
+data.drop(df, axis = 1, inplace = True)
+data
+```
+Output :
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-32.png)
+
+---
+
+## 20. Query
+
+
+
+> Syntax : DataFrame.query(expr, inplace=False, **kwargs)
+
+Returns : DataFrame or None
+
+_query()_ using “dot syntax”. Basically, type the name of the DataFrame you want to subset, then type a “dot”, and then type the name of the method --> query()
+
+```python
+data.query('18 < Age < 23')[:10]
+```
+
+Output : 
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-52.png)
+
+---
+
+## 21. Min(), Max(), Mean()
+
+
+
+_min()_ function returns the minimum of the values in the given object. If the input is a series, the method will return a scalar which will be the minimum of the values in the series.
+
+> Syntax : DataFrame.min(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)[source]
+
+Returns : Series or DataFrame (if level specified)
+
+```python
+data['Age'].min()
+```
+
+Output :
+
+` 0.42 `
+
+
+
+max() function returns index of first occurrence of maximum over requested axis. While finding the index of the maximum value across any index, all NA/null values are excluded.
+
+> Syntax : DataFrame.max(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)[source]
+
+Returns : Series or DataFrame (if level specified)
+
+```python
+data['Age'].max()
+```
+
+Output : 
+
+` 80 `
+
+
+
+_mean()_ function is used to return the mean of the values for the requested axis. If we apply this method on a Series object, then it returns a scalar value, which is the mean value of all the observations in the dataframe.
+
+> Syntax : DataFrame.mean(axis=None, skipna=None, level=None, numeric_only=None, **kwargs)[source]
+
+Returns : Series or DataFrame (if level specified)
+
+```python
+data['Age'].mean()
+```
+
+Output :
+
+` 29.69911764705882 `
+
+
+---
+---
+
+## Thankyou DevIncept
+
+## Content Created By
+- Nagashree M S
+- Prajakta
+- Rammya Dharshini K
+
+![](https://github.com/rammya29/Intern-Work/blob/main/int-py-8/Pandas%20Function/Images/Img-2.png)

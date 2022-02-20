@@ -1,159 +1,402 @@
- # **Line graph:**
+# Line Graph
+### A Line plot can be defined as a graph that displays data as points or check marks above a number line, showing the frequency of each value.
+#### **Steps we follow to draw this graph:**
 
-Steps we follow to draw this graph:<br>
+1. First, we define the x-axis and the y-axis values as lists.
+2. Using .plot() we plot the graph
+3. If we want , we can name the x-axis and the y-axis.
+4. We can also give a title to our graph.
+5. We use .show() to view our grap
 
-1.First, we define the x-axis and the y-axis values as lists.<br>
-2.Using .plot() we plot the graph<br>
-3.If we want , we can name the x-axis and the y-axis.<br>
-4.We can also give a title to our graph.<br>
-5.We use .show() to view our graph<br>
 
-Example:<br>
+```python
+#import the Respeted libraries 
+import matplotlib.pyplot as plt
+from matplotlib import colors
+from matplotlib.ticker import PercentFormatter
+import numpy as np
+import random as random
+```
 
-1.<br>
-<img src="https://user-images.githubusercontent.com/49331074/93016812-840b4800-f5e1-11ea-9f8e-7402fe761fd1.JPG">
-<br>
-<img src="https://user-images.githubusercontent.com/49331074/93016857-da788680-f5e1-11ea-857a-620a56479a08.JPG">
-<br>
-2.
-<br><img src="https://user-images.githubusercontent.com/49331074/93016992-13652b00-f5e3-11ea-85a9-4f2ca39a5809.JPG">
-<br>
-<img src="https://user-images.githubusercontent.com/49331074/93016996-16601b80-f5e3-11ea-83c8-fc79e8652734.JPG">
-<br>
-## **Two or more lines on same graph:**
+### Creating a Figure Containing Single Axes
 
-Example:<br>
-3.
-<br><img src="https://user-images.githubusercontent.com/49331074/93016936-799d7e00-f5e2-11ea-8264-15f716437089.JPG">
-<br>
-<img src="https://user-images.githubusercontent.com/49331074/93016954-98037980-f5e2-11ea-9744-a767f5b63902.JPG">
-<br>
-4.<br><img src="https://user-images.githubusercontent.com/49331074/93016955-99cd3d00-f5e2-11ea-8c43-0557e5dde87b.JPG">
-<br>
-<img src="https://user-images.githubusercontent.com/49331074/93016957-9cc82d80-f5e2-11ea-8861-e06c23985bc7.JPG">
-<br>
-Here, we plot two lines on same graph. We differentiate between them by giving them a name(label) which is passed as an argument of .plot() function.
-The small rectangular box giving information about type of line and its color is called legend. We can add a legend to our plot using .legend() function.
-<br>
-5.<br>x = [1,2,3] <br>
-y = [2,4,6] <br>
-<br>
-plt.plot(x, y, label = "line1") <br>
-<br>
-x1 = [1,2,3] <br>
-y1 = [4,8,3] <br>
-<br>
-plt.plot(x1, y1, label = "line2") <br>
-<br>
-plt.xlabel('x-axis') <br>
-<br>
-plt.ylabel('y-axis') <br>
-<br>
-plt.title('Two lines on one graph') <br>
-<br>
-plt.legend() <br>
-<br>
-plt.show() <br>
-<br>
-Output:<br>
-<img src="https://user-images.githubusercontent.com/49331074/93017128-d6e5ff00-f5e3-11ea-83ed-1200afbbc722.JPG">
-<br>
-<img src="https://user-images.githubusercontent.com/49331074/93017156-14e32300-f5e4-11ea-82d8-1aebed7a20ed.JPG">
-</p>
+
+```python
+fig,points = plt.subplots()
+points.plot([1, 4, 9, 13],[1,11,2,16])
+```
+
+
+
+
+    [<matplotlib.lines.Line2D at 0x1b9d0aef130>]
+
+
+
+
+    
+![png](Images/output_3_1.png)
+    
+
+
+
+```python
+#Creating a Figure Containing 2 axes
+#Example1:
+x = np.array([1, 3, 6, 9])  # X-axis points
+y = np.array([1,6,3,9])
+plt.plot(x, y,linestyle = 'dashed',linewidth=2,color = 'black')
+#we can use many Line-styles, colors and adjust the thickness
+plt.show() 
+```
+
+
+    
+![png](Images/output_4_0.png)
+    
+
+
+
+```python
+#Example2
+x = np.array(['Maths','Science','Social','English'])
+y = np.array([50,60,40,90])
+  
+plt.plot(x, y)
+plt.xlabel("Subjects",size='20')  # add X-axis label
+plt.ylabel("Marks",size='20')  # add Y-axis label
+plt.title("The Graph of Marks",size='18',color='blue')  # add title
+plt.show()
+```
+
+
+    
+![png](Images/output_5_0.png)
+    
+
+
+# Two or more lines on same graph
+
+
+
+```python
+#Example1
+x = np.linspace(1,10,500)
+fig, ax= plt.subplots()
+ax.plot(x,x,label ='linear')
+ax.plot(x,x**2,label ='quadratic')
+ax.plot(x,x**3,label ='cubic')  
+ax.set_xlabel("X-axis data")
+ax.set_ylabel("Y-axis data")
+ax.set_title('Multiple plots')
+plt.legend()
+```
+
+
+
+
+    <matplotlib.legend.Legend at 0x1b9d0f28880>
+
+
+
+
+    
+![png](Images/output_7_1.png)
+    
+
+
+
+```python
+#Example2
+x = np.linspace(1,4,6)
+
+fig, ax= plt.subplots()
+ax.plot(x,x,label ='linear')
+ax.plot(x,x**2,label ='quadratic')
+ax.plot(x,x**3,label ='cubic')  
+ax.set_xlabel("X-axis data")
+ax.set_ylabel("Y-axis data")
+ax.set_title('Multiple plots')
+plt.legend()
+```
+
+
+
+
+    <matplotlib.legend.Legend at 0x1b9d10320d0>
+
+
+
+
+    
+![png](Images/output_8_1.png)
+    
+
+
+
+```python
+#Example3
+d=[5,10,15]
+f=[10,20,30]
+plt.plot(d,f,label ='Data1')
+d1=[5,10,15]
+f1=[15,40,10]
+plt.plot(d1,f1,label ='Data2')
+plt.xlabel("X-axis data")
+plt.ylabel("Y-axis data")
+plt.title('Two Lines on one Graph')
+plt.legend()
+```
+
+
+
+
+    <matplotlib.legend.Legend at 0x1b9d0ff5cd0>
+
+
+
+
+    
+![png](Images/output_9_1.png)
+    
+
+
+
+```python
+#Example3
+#The student names are added to the student’s list and the marks list is created at the random.randint() method.
+students = ["Jane","Joe","Beck","Tom",
+            "Sam","Eva","Samuel","Jack",
+            "Dana","Ester","Carla"] 
+marks=[]
+for i in range(0,len(students)):
+     marks.append(random.randint(0, 101))
+  
+plt.xlabel("Students",size=20)
+plt.ylabel("Marks",size=20)
+plt.title("CLASS RECORDS",size=22,color='blue')
+plt.plot(students,marks,'m--')
+```
+
+
+
+
+    [<matplotlib.lines.Line2D at 0x1b9d241cd90>]
+
+
+
+
+    
+![png](Images/output_10_1.png)
+    
+
 
 # Bar Chart
-To draw bar charts we use, plt.bar() function.<br>
-We pass x-coordinates along with the required heights.
-We can give names to x-axis coordinates.
-<br>
-Syntax:<br>
-matplotlib.pyplot.bar(x, height, width=0.8, bottom=None, *, align='center', data=None, **kwargs)
-<br>
-<br>
-<ul>
-<li>The bars are at position x.</li>
-<li>Height refers to the height of the bars.</li>
-<li>We can pass the same height for all the bars , or , pass a list of different heights for each bars.</li>
-<li>'align' is the alignment of the bars with the x-axis.</li>
-<li>'center': Center the base on the x positions.</li>
-<li>'edge': Align the left edges of the bars with the x positions.</li>
-<li>We can add colours to the face of the bars as well as to the edges of the bars.</li>
-<li>We can give linewidth of the bar.</li>
-<li>If we put the linewidth to be 0 , then their won't be any bar edge.</li>
-<li>We can provide tick_labels.</li>
-<li>The default value of bottom is 0.</li>
-</ul>
-<br>
-6.
-<br>
-x = [15,82,33,6,95] <br>
- <br>
-y = [27,48,69,32,0] <br>
-<br>
-plt.bar(x,y) <br>
-<br>
-plt.show() <br>
-<br>
-Output:
-<br>
-<img src="https://user-images.githubusercontent.com/49331074/93017435-5ffe3580-f5e6-11ea-8631-56bf9c989323.JPG">
-<br>
-7.<br>
-x = [5,2,3,6,9] <br>
- <br>
-y = [27,48,69,32,100]  <br>
- <br>
-plt.bar(x,y)  <br>
- <br>
-plt.show()  <br>
-<br>
-Output: <br>
-<br>
-<img src="https://user-images.githubusercontent.com/49331074/93017495-d733c980-f5e6-11ea-815c-a50a9f5f33bf.JPG">
- <br>
- 8.
- <br>
-import matplotlib.pyplot as plt 
- <br>
+### A bar plot or bar chart is a graph that represents the category of data with rectangular bars with lengths and heights that is proportional to the values which they represent. The bar plots can be plotted horizontally or vertically. 
+**To draw bar charts we use, plt.bar() function.**
+#### matplotlib.pyplot.bar(x, height, width=0.8, bottom=None, *, align=’center’, data=None, **kwargs)
 
- <br>
-x = [1, 2, 3, 4, 5] 
- <br>
- <br>
+### The bars are at position x.
+* Height refers to the height of the bars.
+* We can pass the same height for all the bars , or , pass a list of different heights for each bars.
+* **'align'** is the alignment of the bars with the x-axis.
+* **'center'**: Center the base on the x positions.
+* **'edge'**: Align the left edges of the bars with the x positions.
+* We can add colours to the face of the bars as well as to the edges of the bars.
+* We can give linewidth of the bar.
+* If we put the linewidth to be 0 , then their won't be any bar edge.
+* We can provide tick_labels.
+* The default value of bottom is 0.
+
+
+```python
+#Example1
+x = [15,39,23,6,43]
+y = [27,48,69,32,0]
+
+plt.bar(x,y,color='Blue')
+
+plt.show()
+
+```
+
+
+    
+![png](Images/output_12_0.png)
+    
+
+
+
+```python
+#Example2
+x = [5,2,3,6,9]
+
+y = [27,48,69,32,100]
+
+plt.bar(x,y,color='green')
+
+plt.show()
+```
+
+
+    
+![png](Images/output_13_0.png)
+    
+
+
+
+```python
+x = [1, 2, 3, 4, 5]
+
+h = [10, 24, 36, 40, 5]
+
+tick_label = ['one', 'two', 'three', 'four', 'five']
+
+
+plt.bar(x, h, tick_label = tick_label, width = 0.6, color = ['blue', 'red'])
+
+
+plt.xlabel('x-axis')
+
+
+plt.ylabel('y-axis')
+
+
+plt.show()
+```
+
+
+    
+![png](Images/output_14_0.png)
+    
+
+
+### Stacked bar plot
+**Stacked bar plots represent different groups on top of one another. The height of the bar depends on the resulting height of the combination of the results of the groups.**
+
+
+```python
+#Example3
+N = 5
  
-h = [10, 24, 36, 40, 5] 
- <br>
- <br>
-
-tick_label = ['one', 'two', 'three', 'four', 'five'] 
- <br>
- <br>
-
-plt.bar(x, h, tick_label = tick_label, width = 0.6, color = ['blue', 'black']) 
- <br>
- <br>
+boys = (20, 35, 30, 35, 27)
+girls = (25, 32, 34, 20, 25)
+boyStd = (2, 3, 4, 1, 2)
+girlStd = (3, 5, 2, 3, 3)
+ind = np.arange(N)  
+width = 0.35 
  
-plt.xlabel('x-axis') 
- <br>
- <br>
+fig = plt.subplots(figsize =(10, 7))
+p1 = plt.bar(ind, boys, width, yerr = boyStd)
+p2 = plt.bar(ind, girls, width,
+             bottom = boys, yerr = girlStd)
+ 
+plt.ylabel('Contribution',size='18',color='blue')
+plt.xlabel('Teams Name',size='18',color='blue')
+plt.title('Contribution by the teams',color='black',size='20')
+plt.xticks(ind, ('T1', 'T2', 'T3', 'T4', 'T5'))
+plt.yticks(np.arange(0, 81, 10))
+plt.legend((p1[0], p2[0]), ('boys', 'girls'))
+ 
+plt.show()
+```
 
-plt.ylabel('y-axis') 
- <br>
- <br>
 
-plt.title('Bar graph!') 
- <br>
- <br>
+    
+![png](Images/output_16_0.png)
+    
 
+
+### Draw a horizontal bar chart
+#### Creating a horizontal bar chart
+##### Approach:
+
+* Creating list y   for discrete values on y-axis
+* Creating list x  consisting only numeric data for discrete values on x-axis
+* Calling plt.barh() function with parameters y,x as plt.barh(y,x)
+* Setting x_label() and y_label()
+* Setting title() for our bar chart
+* Calling plt.show() for visualizing our chart
+
+
+```python
+#Example1
+f, ax = plt.subplots(figsize=(10,5))
+x=['DataScience', 'Web-Devlopment', 'Machine Learning', 'Artificial intelligence']
+y=[40, 24,67, 66] 
+plt.barh(x, y,color='#ffa600')
+plt.xlabel("Employees",size='18') 
+plt.ylabel("Job Roles",size='18')   
+plt.title("Horizontal bar graph",color = 'blue',size='22')
+plt.show()
+```
+
+
+    
+![png](Images/output_18_0.png)
+    
+
+
+# Histogram
+### A histogram is basically used to represent data provided in a form of some groups.It is accurate method for the graphical representation of numerical data distribution. It is a type of bar plot where X-axis represents the bin ranges while Y-axis gives information about frequency
+##### matplotlib.pyplot.hist(x, bins=None, range=None, density=False, weights=None, cumulative=False, bottom=None, histtype=’bar’, align=’mid’, orientation=’vertical’, rwidth=None, log=False, color=None, label=None, stacked=False, data=None, kwargs)
+* x: it takes an array or a sequence if array.
+* bins : bins defines the number of equal width bins in the the given range.
+* range:The lower and upper range of the bins.
+* density: It is a boolean value , and its default is False. If it is True,it draws and returns a probability density.
+* weights: array-like or None, default: None
+
+
+```python
+#Example1
+y = [27,48,69,32,0]
+
+plt.hist(y)
+
+
+plt.show()
+```
+
+
+    
+![png](Images/output_20_0.png)
+    
+
+
+
+```python
+#Example2
+np.random.seed(23685752)
+N_points = 10000
+n_bins = 20
+  
+x = np.random.randn(N_points)
+y = .8 ** x + np.random.randn(10000) + 25
+fig, axs = plt.subplots(1, 1,
+    figsize =(12, 7),tight_layout = True)
+  
+axs.hist(x, bins = n_bins)
+  
+plt.show()
+```
+
+
+    
+![png](Images/output_21_0.png)
+    
+
+
+
+```python
+#Example4
+x = np.random.normal(170, 10, 250)
+
+plt.hist(x)
 plt.show() 
- <br>
- <br>
- Output:
- 
- <br>
- <img src="https://user-images.githubusercontent.com/49331074/93017498-dd29aa80-f5e6-11ea-9445-570faf1ec794.JPG">
- 
- <br>
- This is how we add colour to our bar graph.
- <br>
- 
+```
+
+
+    
+![png](Images/output_22_0.png)
+    
+
